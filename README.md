@@ -4,14 +4,20 @@ This is a script that generates a basic skeleton for Binary exploitation.
 
 Usage:
 	./skelly.py -o <new_file>
+
 	./skelly.py -f <use_file>
+
 	./skelly.py -h, --help
 
 
 Skeleton:
+
 	from pwn import *
+
 	elf             = ELF('./Hello.py')
+
 	p               = elf.process()
+
 	#p              = remote('', port)
 
 
