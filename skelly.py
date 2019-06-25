@@ -47,8 +47,15 @@ def use_file(filename):
     except:
         print "Error occurred - use_file"
     return filename
+def usage():
+    print "{} -o <new_file>".format(sys.argv[0])
+    print "{} -f <use_file>".format(sys.argv[0])
+    print "{} -h, --help".format(sys.argv[0])
+
 
 def main():
+    if len(sys.argv) != 3:
+        usage()
     for v in range(len(sys.argv)):
         if sys.argv[v] == "-o":
             filename = create_file(sys.argv[v+1])
