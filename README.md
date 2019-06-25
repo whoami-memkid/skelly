@@ -32,5 +32,4 @@ Skeleton:
 	    f.close()
 	"""
 	p.send()
-	p.close()
 	p.interactive()
