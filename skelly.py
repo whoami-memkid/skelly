@@ -17,7 +17,7 @@ def write_file(f, filename):
     skelly +=  "p               = elf.process()\n"
     skelly +=  "#p              = remote('', port)\n"
     skelly +=  "\n\n"
-    skelly +=  "#p.recvuntil('')\n"
+    skelly +=  "#p.recvuntil('')    #Change this to whatever comes before the input\n"
     skelly +=  "\n\n"
     skelly +=  "payload = 'A' * 40 # Change Value\n"
     skelly +=  "\n\n"
