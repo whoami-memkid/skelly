@@ -3,6 +3,7 @@
 This is a script that generates a basic skeleton for Binary exploitation.
 
 Usage:
+
 	./skelly.py -o <new_file>
 
 	./skelly.py -f <use_file>
@@ -21,11 +22,9 @@ Skeleton:
 	#p              = remote('', port)
 
 
-	#p.recvuntil('')	#Change this to whatever comes before the input
-
+	#p.recvuntil('')	 #Change this to whatever comes before the input
 
 	payload = 'A' * 40 # Change Value
-
 
 	"""
 	with open('exploit.txt', 'w+') as f:
