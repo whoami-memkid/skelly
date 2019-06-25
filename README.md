@@ -6,16 +6,16 @@ Usage:
 
 	./skelly.py -o <new_file>
 
-	./skelly.py -f <use_file>
-
 	./skelly.py -h, --help
 
 
 Skeleton:
 
+	#!/usr/bin/python2.7
+	
 	from pwn import *
 
-	elf             = ELF('./Hello.py')
+	elf             = ELF('')
 
 	p               = elf.process()
 

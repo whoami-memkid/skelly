@@ -1,5 +1,6 @@
 #!/usr/bin/python2.7
 import sys
+import os
 
 """
 from pwn import
@@ -11,9 +12,11 @@ p               = elf.process()
 
 p.close()
 """
+
 def write_file(f, filename):
-    skelly =   "from pwn import *\n"
-    skelly +=  "elf             = ELF('./{}')\n".format(filename)
+    skelly =   "#!/usr/bin/python2.7\n"
+    skelly +=  "from pwn import *\n\n"
+    skelly +=  "elf             = ELF('')\n"
     skelly +=  "p               = elf.process()\n"
     skelly +=  "#p              = remote('', port)\n"
     skelly +=  "\n\n"
@@ -32,25 +35,24 @@ def write_file(f, filename):
     f.write(skelly)
     f.close()
 
-def create_file(filename):
+def set_perm(file_path, filename):
+    os.chmod("{}".format(file_path), 0o744)
+
+
+def append_file(filename):
     try:
         with open('{}'.format(filename), 'a') as f:
             write_file(f, filename)
+
     except:
-        print "Error occurred - create_file"
+        print "Error occurred in append_file"
     return filename
 
-def use_file(filename):
-    try:
-        with open('{}'.format(filename), 'a') as f:
-            write_file(f, filename)
-    except:
-        print "Error occurred - use_file"
-    return filename
+
 def usage():
     print "{} -o <new_file>".format(sys.argv[0])
-    print "{} -f <use_file>".format(sys.argv[0])
     print "{} -h, --help".format(sys.argv[0])
+    exit(0)
 
 
 def main():
@@ -58,9 +60,11 @@ def main():
         usage()
     for v in range(len(sys.argv)):
         if sys.argv[v] == "-o":
-            filename = create_file(sys.argv[v+1])
-        elif sys.argv[v] == "-f":
-            filename = use_file(v+1)
+            filename = append_file(sys.argv[v+1])
+            set_perm(sys.argv[v+1], filename)
+        elif v >= len(sys.argv):
+            print "Error occurred in main_for_else\n\n"
+            usage()
 
 
 if __name__ == '__main__':
